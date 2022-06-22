@@ -42,11 +42,10 @@ class _MyHomeState extends State<MyHome> {
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.fromLTRB(24.0, 12.0, 24.0, 12.0),
+                  padding: const EdgeInsets.fromLTRB(36.0, 12.0, 36.0, 12.0),
+                  textStyle: const TextStyle(fontSize: 20.0),
                 ),
-                child: const Text('Future test',
-                  style: TextStyle(fontSize: 20.0),
-                ),
+                child: const Text('Future test'),
               ),
               const SizedBox(height: 20.0),
               const Text('result',
