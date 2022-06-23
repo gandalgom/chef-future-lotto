@@ -26,6 +26,9 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
+
+  String result = 'no data found';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +43,7 @@ class _MyHomeState extends State<MyHome> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => futureTest(context),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.fromLTRB(36.0, 12.0, 36.0, 12.0),
                   textStyle: const TextStyle(fontSize: 20.0),
@@ -48,13 +51,26 @@ class _MyHomeState extends State<MyHome> {
                 child: const Text('Future test'),
               ),
               const SizedBox(height: 20.0),
-              const Text('result',
-                style: TextStyle(fontSize: 20.0, color: Colors.redAccent),
+              Text(
+                result,
+                style: const TextStyle(fontSize: 20.0, color: Colors.redAccent),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void futureTest(BuildContext context) {
+    Future.delayed(const Duration(seconds: 3))
+      .then((value) => setState(() => result = 'The data is fetched'));
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Snack bar has shown first~'),
+        duration: Duration(seconds: 1),
+      )
     );
   }
 }
