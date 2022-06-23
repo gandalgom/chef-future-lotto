@@ -55,6 +55,19 @@ class _MyHomeState extends State<MyHome> {
                 result,
                 style: const TextStyle(fontSize: 20.0, color: Colors.redAccent),
               ),
+              const Divider(height: 20.0, thickness: 2.0),
+              FutureBuilder(
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return Text(
+                      snapshot.data.toString(),
+                      style: const TextStyle(fontSize: 20.0, color: Colors.blue),
+                    );
+                  }
+                  return const CircularProgressIndicator();
+                },
+                future: myFuture(),
+              ),
             ],
           ),
         ),
@@ -72,5 +85,10 @@ class _MyHomeState extends State<MyHome> {
         duration: Duration(seconds: 1),
       )
     );
+  }
+
+  Future<String> myFuture() async {
+    await Future.delayed(const Duration(seconds: 2));
+    return 'another Future completed';
   }
 }
